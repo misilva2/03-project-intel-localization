@@ -13,8 +13,11 @@
   <meta name="theme-color" content="#0071c5" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <!-- Modern, accessible font with broad language coverage -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Preload the first carousel image for faster LCP -->
+  <link rel="preload" as="image" href="img/Gemini_Generated_Image_j759c3j759c3j759.png" />
   <!-- Favicon so the browser does not request /favicon.ico -->
   <link rel="icon" href="img/intel-header-logo.svg" type="image/svg+xml" />
   
@@ -22,8 +25,6 @@
   <!-- Bootstrap LTR + RTL (JS will enable the correct one) -->
   <link id="bootstrap-ltr" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous" disabled />
   <link id="bootstrap-rtl" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.rtl.min.css" integrity="sha384-CfCrinSRH2IR6a4e6fy2q6ioOX7O6Mtm1L9vRvFZ1trBncWmMePhzvafv7oIcWiW" crossorigin="anonymous" />
-  <!-- Bootstrap Icons for simple, accessible icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="style.css" />
   <script src="theme.js" defer></script>
 </head>
@@ -38,7 +39,7 @@
   <header>
     <div>
       <!-- Ask Copilot to teach you about `.svg`. 🙂 You'll need to resize the logo with CSS. -->
-      <img src="img/intel-header-logo.svg" alt="Intel logo in white" width="180" height="auto" loading="eager" />
+      <img src="img/intel-header-logo.svg" alt="Intel logo in white" width="180" height="60" loading="eager" decoding="async" />
       <!-- Main Heading -->
       <h1>
         Sustainability Through the Ages
@@ -74,31 +75,31 @@
         <!-- Slides -->
         <div class="carousel-inner rounded-4">
           <div class="carousel-item active">
-            <img src="img/Gemini_Generated_Image_j759c3j759c3j759.png" class="d-block w-100" alt="Intel founders Robert Noyce and Gordon Moore signing documents" />
+            <img src="img/Gemini_Generated_Image_j759c3j759c3j759.png" class="d-block w-100" alt="Intel founders Robert Noyce and Gordon Moore signing documents" width="1200" height="675" loading="eager" decoding="async" fetchpriority="high" />
           </div>
           <div class="carousel-item">
-            <img src="img/Gemini_Generated_Image_855zkg855zkg855z.png" class="d-block w-100" alt="Intel 4004 microprocessor on display" />
+            <img src="img/Gemini_Generated_Image_855zkg855zkg855z.png" class="d-block w-100" alt="Intel 4004 microprocessor on display" width="1200" height="675" loading="lazy" decoding="async" />
           </div>
           <div class="carousel-item">
-            <img src="img/3.jpg" class="d-block w-100" alt="Close-up of the Intel 8086 processor" />
+            <img src="img/3.jpg" class="d-block w-100" alt="Close-up of the Intel 8086 processor" width="1200" height="675" loading="lazy" decoding="async" />
           </div>
           <div class="carousel-item">
-            <img src="img/Gemini_Generated_Image_mxdsyxmxdsyxmxds.png" class="d-block w-100" alt="Intel 386 processor chip" />
+            <img src="img/Gemini_Generated_Image_mxdsyxmxdsyxmxds.png" class="d-block w-100" alt="Intel 386 processor chip" width="1200" height="675" loading="lazy" decoding="async" />
           </div>
           <div class="carousel-item">
-            <img src="img/Gemini_Generated_Image_p7u92zp7u92zp7u9.png" class="d-block w-100" alt="Illustration of peak greenhouse gas emissions" />
+            <img src="img/Gemini_Generated_Image_p7u92zp7u92zp7u9.png" class="d-block w-100" alt="Illustration of peak greenhouse gas emissions" width="1200" height="675" loading="lazy" decoding="async" />
           </div>
           <div class="carousel-item">
-            <img src="img/Gemini_Generated_Image_xiro6mxiro6mxiro.png" class="d-block w-100" alt="Visual of Intel RISE strategy goals" />
+            <img src="img/Gemini_Generated_Image_xiro6mxiro6mxiro.png" class="d-block w-100" alt="Visual of Intel RISE strategy goals" width="1200" height="675" loading="lazy" decoding="async" />
           </div>
           <div class="carousel-item">
-            <img src="img/Gemini_Generated_Image_4zh0k04zh0k04zh0.png" class="d-block w-100" alt="Graphic representing Intel's net-zero emissions commitment" />
+            <img src="img/Gemini_Generated_Image_4zh0k04zh0k04zh0.png" class="d-block w-100" alt="Graphic representing Intel's net-zero emissions commitment" width="1200" height="675" loading="lazy" decoding="async" />
           </div>
           <div class="carousel-item">
-            <img src="img/Gemini_Generated_Image_471h3x471h3x471h.png" class="d-block w-100" alt="Solar and wind icons for renewable electricity achievement" />
+            <img src="img/Gemini_Generated_Image_471h3x471h3x471h.png" class="d-block w-100" alt="Solar and wind icons for renewable electricity achievement" width="1200" height="675" loading="lazy" decoding="async" />
           </div>
           <div class="carousel-item">
-            <img src="img/Gemini_Generated_Image_x9arl7x9arl7x9ar.png" class="d-block w-100" alt="Audience at Intel Sustainability Summit" />
+            <img src="img/Gemini_Generated_Image_x9arl7x9arl7x9ar.png" class="d-block w-100" alt="Audience at Intel Sustainability Summit" width="1200" height="675" loading="lazy" decoding="async" />
           </div>
         </div>
 
@@ -120,7 +121,7 @@
       <h2>1968</h2>
       <h3>Intel Founded</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_j759c3j759c3j759.png" alt="Intel founders Robert Noyce and Gordon Moore signing documents" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_j759c3j759c3j759.png" alt="Intel founders Robert Noyce and Gordon Moore signing documents" loading="lazy" decoding="async" width="320" height="180" />
       <p>
         Robert Noyce and Gordon Moore rename the newly formed company 
         NM Electronics to Intel Corporation, laying the foundation for 
@@ -133,7 +134,7 @@
       <h2>1971</h2>
       <h3>First Microprocessor</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_855zkg855zkg855z.png" alt="Intel 4004 microprocessor on display" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_855zkg855zkg855z.png" alt="Intel 4004 microprocessor on display" loading="lazy" decoding="async" width="320" height="180" />
       <p>
         Intel debuts the 4004, the world's first commercial microprocessor, 
         igniting the microprocessor revolution and propelling the future 
@@ -146,7 +147,7 @@
       <h2>1978</h2>
       <h3>8086 Processor</h3>
       <!-- Add image -->
-      <img src="img/3.jpg" alt="Close-up of the Intel 8086 processor" loading="lazy" width="320" height="auto" />
+      <img src="img/3.jpg" alt="Close-up of the Intel 8086 processor" loading="lazy" decoding="async" width="320" height="180" />
       <p>
         Launch of the 8086 processor, establishing the x86 architecture 
         that drives countless PCs and servers in the modern era.
@@ -158,7 +159,7 @@
       <h2>1985</h2>
       <h3>386 Processor</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_mxdsyxmxdsyxmxds.png" alt="Intel 386 processor chip" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_mxdsyxmxdsyxmxds.png" alt="Intel 386 processor chip" loading="lazy" decoding="async" width="320" height="180" />
       <p>
         Intel introduces the 386 processor with 32-bit architecture, 
         ushering in a new era of performance and multitasking for 
@@ -171,7 +172,7 @@
       <h2>2006</h2>
       <h3>Peak GHG Emissions</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_p7u92zp7u92zp7u9.png" alt="Illustration of peak greenhouse gas emissions" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_p7u92zp7u92zp7u9.png" alt="Illustration of peak greenhouse gas emissions" loading="lazy" decoding="async" width="320" height="180" />
       <p>
         This year marks Intel's highest annual greenhouse gas emissions 
         for operations. Over subsequent years, Intel invests heavily in 
@@ -185,7 +186,7 @@
       <h2>2020</h2>
       <h3>RISE Strategy</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_xiro6mxiro6mxiro.png" alt="Visual of Intel RISE strategy goals" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_xiro6mxiro6mxiro.png" alt="Visual of Intel RISE strategy goals" loading="lazy" decoding="async" width="320" height="180" />
       <p>
         Intel launches its RISE (Responsible, Inclusive, Sustainable, 
         Enabling) strategy and 2030 goals, aiming to drive industry-wide 
@@ -198,7 +199,7 @@
       <h2>2022</h2>
       <h3>Net-Zero By 2040</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_4zh0k04zh0k04zh0.png" alt="Graphic representing Intel's net-zero emissions commitment" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_4zh0k04zh0k04zh0.png" alt="Graphic representing Intel's net-zero emissions commitment" loading="lazy" decoding="async" width="320" height="180" />
       <p>
         Intel announces its commitment to achieve net-zero greenhouse 
         gas emissions (Scope 1 and 2) across its global operations 
@@ -211,7 +212,7 @@
       <h2>2023</h2>
       <h3>Renewable Electricity</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_471h3x471h3x471h.png" alt="Solar and wind icons for renewable electricity achievement" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_471h3x471h3x471h.png" alt="Solar and wind icons for renewable electricity achievement" loading="lazy" decoding="async" width="320" height="180" />
       <p>
         The company achieves 99% renewable electricity usage worldwide, 
         helping to drastically lower carbon emissions and driving progress 
@@ -224,7 +225,7 @@
       <h2>2024</h2>
       <h3>Sustainability Summit</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_x9arl7x9arl7x9ar.png" alt="Audience at Intel Sustainability Summit" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_x9arl7x9arl7x9ar.png" alt="Audience at Intel Sustainability Summit" loading="lazy" decoding="async" width="320" height="180" />
       <p>
         Intel hosts its first Sustainability Summit, uniting suppliers, 
         government officials, and industry leaders to collaborate on 
@@ -258,7 +259,10 @@
           <div class="col">
             <div class="info-card card h-100 text-center">
               <div class="card-body">
-              <i class="bi bi-droplet" aria-hidden="true"></i>
+              <!-- Inline SVG so the icon loads instantly without an icon font -->
+              <svg class="info-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path d="M7.7 1.1c.2-.2.5-.2.7 0 1.6 1.7 4.6 5.2 4.6 8.3 0 3-2.3 5.3-5.1 5.3S2.8 12.4 2.8 9.4c0-3.1 3-6.6 4.9-8.3z" />
+              </svg>
               <h2 class="h4">Water Stewardship</h2>
               <p>See how Intel protects watersheds and improves water efficiency.</p>
               <a class="learn-more" href="#">Learn More</a>
@@ -270,7 +274,12 @@
           <div class="col">
             <div class="info-card card h-100 text-center">
               <div class="card-body">
-              <i class="bi bi-recycle" aria-hidden="true"></i>
+              <!-- Inline SVG so the icon loads instantly without an icon font -->
+              <svg class="info-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path d="M5.5 1.2c.5 0 .9.2 1.1.6l1.2 2.1-1.6.3-.9-1.5H3.6l1.2 2.1-1.4.8L1.6 2.5C1.4 2.1 1.7 1.6 2.1 1.6h3.4z" />
+                <path d="M13.9 7.2c.3.4.3 1 0 1.4l-2 2.3-.7-1.5 1.1-1.2-1.5-2.6 1.4-.8 1.7 2.4z" />
+                <path d="M8.2 14.8c-.5 0-1-.3-1.2-.7L5.8 12l1.6-.3.7 1.4h2.6l-1.2-2.1 1.4-.8 1.8 3.1c.2.4 0 .9-.4.9H8.2z" />
+              </svg>
               <h2 class="h4">Circular Economy</h2>
               <p>Discover how Intel reduces waste and supports responsible recycling.</p>
               <a class="learn-more" href="#">Learn More</a>
@@ -291,15 +300,15 @@
           <form aria-label="Newsletter subscription form">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" />
               <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" />
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password" />
             </div>
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" name="agreement" />
               <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
