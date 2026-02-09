@@ -10,6 +10,18 @@ function getThemePreference() {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
+// Apply RTL or LTR based on system language
+function applyLanguageDirection() {
+  const rtlLanguages = ['ar', 'he', 'fa', 'ur', 'ps', 'dv', 'ku', 'yi'];
+  const systemLanguage = (navigator.language || 'en').toLowerCase();
+  const languageCode = systemLanguage.split('-')[0];
+  const isRtl = rtlLanguages.includes(languageCode);
+
+  // Set direction on the root element so all content follows it
+  document.documentElement.setAttribute('dir', isRtl ? 'rtl' : 'ltr');
+  document.documentElement.setAttribute('lang', languageCode);
+}
+
 // Apply theme to the document - optimized to minimize reflows
 function applyTheme(theme) {
   // Use requestAnimationFrame for smooth visual updates
@@ -41,6 +53,7 @@ function toggleTheme() {
 
 // Initialize theme on page load
 document.addEventListener('DOMContentLoaded', () => {
+  applyLanguageDirection();
   const theme = getThemePreference();
   applyTheme(theme);
   

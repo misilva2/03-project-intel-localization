@@ -26,19 +26,27 @@ body {
   --bg-card: #1a1a1a;
   --bg-card-hover: #242424;
   --text-primary: #ffffff;
-  --text-secondary: #e0e0e0;
-  --text-muted: #b0b0b0;
+  --text-secondary: #f0f0f0;
+  --text-muted: #d9d9d9;
   --accent-primary: #0071c5;
   --accent-secondary: #00a8ff;
+  --accent-glow: rgba(0, 168, 255, 0.35);
   --border-color: rgba(0, 113, 197, 0.3);
   --shadow-color: rgba(0, 113, 197, 0.2);
   --overlay-bg: rgba(0, 0, 0, 0.8);
+  --focus-ring: #ffd200;
   
-  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Noto Sans', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   background-color: var(--bg-primary);
-  background-image: radial-gradient(circle at 20% 50%, rgba(0, 113, 197, 0.03) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 80%, rgba(0, 168, 255, 0.03) 0%, transparent 50%);
+  /* Futuristic glow + subtle grid for depth */
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(0, 113, 197, 0.08) 0%, transparent 55%),
+    radial-gradient(circle at 80% 80%, rgba(0, 168, 255, 0.08) 0%, transparent 55%),
+    linear-gradient(transparent 95%, rgba(0, 113, 197, 0.08) 96%),
+    linear-gradient(90deg, transparent 95%, rgba(0, 113, 197, 0.08) 96%);
+  background-size: auto, auto, 40px 40px, 40px 40px;
   color: var(--text-primary);
+  font-size: 18px;
   line-height: 1.7;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -50,16 +58,23 @@ body.light-theme {
   --bg-card: #ffffff;
   --bg-card-hover: #f0f4f8;
   --text-primary: #1a1a1a;
-  --text-secondary: #2d3748;
-  --text-muted: #4a5568;
+  --text-secondary: #1f2933;
+  --text-muted: #1f2a36;
   --accent-primary: #0071c5;
   --accent-secondary: #005a9e;
+  --accent-glow: rgba(0, 90, 158, 0.25);
   --border-color: rgba(0, 113, 197, 0.2);
   --shadow-color: rgba(0, 0, 0, 0.1);
   --overlay-bg: rgba(255, 255, 255, 0.95);
+  --focus-ring: #0b5cab;
   
-  background-image: radial-gradient(circle at 20% 50%, rgba(0, 113, 197, 0.05) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 80%, rgba(0, 168, 255, 0.05) 0%, transparent 50%);
+  /* Softer grid so text contrast stays strong */
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(0, 113, 197, 0.08) 0%, transparent 55%),
+    radial-gradient(circle at 80% 80%, rgba(0, 168, 255, 0.08) 0%, transparent 55%),
+    linear-gradient(transparent 95%, rgba(0, 113, 197, 0.06) 96%),
+    linear-gradient(90deg, transparent 95%, rgba(0, 113, 197, 0.06) 96%);
+  background-size: auto, auto, 48px 48px, 48px 48px;
 }
 
 /* Professional Theme Toggle Button */
@@ -73,7 +88,7 @@ body.light-theme {
   background: var(--bg-card);
   border: 2px solid var(--border-color);
   box-shadow: 0 8px 24px var(--shadow-color),
-              0 2px 8px rgba(0, 0, 0, 0.1);
+              0 0 18px var(--accent-glow);
   cursor: pointer;
   font-size: 1.5em;
   display: flex;
@@ -88,12 +103,20 @@ body.light-theme {
 .theme-toggle:hover {
   transform: scale(1.1) rotate(15deg);
   box-shadow: 0 12px 32px var(--shadow-color),
-              0 4px 12px rgba(0, 0, 0, 0.15);
+              0 0 26px var(--accent-glow);
   border-color: var(--accent-primary);
 }
 
 .theme-toggle:active {
   transform: scale(0.95);
+}
+
+/* Strong keyboard focus for floating buttons */
+.theme-toggle:focus-visible,
+.scroll-arrow:focus-visible {
+  outline: 4px solid var(--focus-ring);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.2), 0 0 24px var(--accent-glow);
 }
 
 /* Responsive theme button for mobile */
@@ -164,25 +187,12 @@ body.light-theme {
 
 /* Header / Hero Section styling with glass morphism */
 header {
-  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+  background: linear-gradient(135deg, #0b2345 0%, var(--accent-primary) 45%, var(--accent-secondary) 100%);
   padding: 60px 20px;
   text-align: center;
-  box-shadow: 0 8px 32px var(--shadow-color);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 36px var(--shadow-color), 0 0 32px var(--accent-glow);
   position: relative;
   overflow: hidden;
-}
-
-/* Add subtle animated gradient overlay */
-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 200%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  animation: shimmer 8s infinite;
 }
 
 @keyframes shimmer {
@@ -232,8 +242,104 @@ header p {
   color: rgba(255, 255, 255, 0.95);
 }
 
+/* Three-column info section using Bootstrap grid */
+.info-section {
+  padding: 50px 0 20px 0;
+}
+
+/* Keep the info section narrower on wide screens for easier reading */
+.info-section .container {
+  max-width: 1100px;
+}
+
+/* Add more space between columns on larger screens */
+.info-section .row {
+  row-gap: 24px;
+}
+
+.info-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  padding: 0;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 28px var(--shadow-color);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-card i {
+  font-size: 2.2em;
+  color: var(--accent-primary);
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.info-card h2 {
+  font-size: 1.7em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.info-card p {
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+  font-size: 1.05em;
+  line-height: 1.8;
+}
+
+.info-card .card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+}
+
+.info-card .learn-more {
+  margin-top: auto;
+}
+
+/* Small screens: horizontal scroll for info cards */
+@media screen and (max-width: 767.98px) {
+  .info-section .info-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 10px;
+  }
+
+  .info-section .info-row > .col {
+    flex: 0 0 85%;
+    max-width: 85%;
+  }
+}
+
+/* Styled Learn More links */
+.learn-more {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.learn-more:hover {
+  background-color: var(--accent-secondary);
+  transform: translateY(-2px);
+}
+
+.learn-more:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
 /* Timeline Cards Section styling */
-section {
+main > section:not(.info-section) {
   max-width: 1400px;
   margin: 50px auto;
   padding: 20px;
@@ -247,7 +353,7 @@ section {
 
 /* Dim all cards when one is hovered - spotlight effect */
 @media (hover: hover) {
-  section:has(> div:hover) > div:not(:hover) {
+  main > section:not(.info-section):has(> div:hover) > div:not(:hover) {
     opacity: 0.3;
     filter: blur(2px) brightness(0.5);
     transform: scale(0.95);
@@ -260,7 +366,7 @@ section {
     padding: 40px 20px; /* Reduced padding for more content visibility */
   }
   
-  section {
+  main > section:not(.info-section) {
     flex-direction: column; /* Stack cards vertically */
     align-items: center; /* Center cards */
     gap: 40px; /* Increased vertical spacing for better dot separation */
@@ -270,7 +376,7 @@ section {
   }
   
   /* Add vertical timeline line for mobile */
-  section::before {
+  main > section:not(.info-section)::before {
     content: '';
     position: absolute;
     left: 30px;
@@ -282,7 +388,7 @@ section {
   }
   
   /* Make cards full width on mobile with improved sizing */
-  section > div {
+  main > section:not(.info-section) > div {
     width: 90%; /* Slightly narrower for better margins */
     max-width: 380px;
     min-height: 44px; /* Ensure touch target size */
@@ -292,7 +398,7 @@ section {
   }
   
   /* Add timeline dots for each card on mobile */
-  section > div::after {
+  main > section:not(.info-section) > div::after {
     content: '';
     position: absolute;
     left: -50px; /* Position on the left timeline with more space */
@@ -307,7 +413,7 @@ section {
     transition: all 0.3s ease;
   }
   
-  section > div:hover::after {
+  main > section:not(.info-section) > div:hover::after {
     background-color: var(--accent-secondary);
     box-shadow: 0 0 16px rgba(0, 168, 255, 0.6);
     transform: scale(1.2);
@@ -329,7 +435,7 @@ section {
 
 /* Media query for tablets (601px to 1024px) */
 @media screen and (min-width: 601px) and (max-width: 1024px) {
-  section {
+  main > section:not(.info-section) {
     flex-direction: column; /* Stack vertically for better timeline appearance */
     align-items: center;
     gap: 30px;
@@ -339,7 +445,7 @@ section {
   }
   
   /* Add vertical timeline line for tablets */
-  section::before {
+  main > section:not(.info-section)::before {
     content: '';
     position: absolute;
     left: 50%;
@@ -352,7 +458,7 @@ section {
   }
   
   /* Cards for tablets */
-  section > div {
+  main > section:not(.info-section) > div {
     width: 85%;
     max-width: 500px;
     position: relative;
@@ -360,7 +466,7 @@ section {
   }
   
   /* Add timeline dots for each card on tablets */
-  section > div::after {
+  main > section:not(.info-section) > div::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -388,7 +494,7 @@ section {
   }
   
   /* Enhanced dot on hover */
-  section > div:hover::after {
+  main > section:not(.info-section) > div:hover::after {
     width: 24px;
     height: 24px;
     background-color: var(--accent-secondary);
@@ -480,28 +586,28 @@ section {
   }
   
   /* Custom scrollbar styling for the timeline */
-  section::-webkit-scrollbar {
+  main > section:not(.info-section)::-webkit-scrollbar {
     height: 10px;
   }
   
-  section::-webkit-scrollbar-track {
+  main > section:not(.info-section)::-webkit-scrollbar-track {
     background: #1a1a1a;
     border-radius: 10px;
   }
   
-  section::-webkit-scrollbar-thumb {
+  main > section:not(.info-section)::-webkit-scrollbar-thumb {
     background: #0071c5;
     border-radius: 10px;
     transition: background 0.3s ease;
   }
   
-  section::-webkit-scrollbar-thumb:hover {
+  main > section:not(.info-section)::-webkit-scrollbar-thumb:hover {
     background: #00a8ff;
   }
 }
 
 /* Individual timeline card styling with glass morphism - Optimized */
-section > div {
+main > section:not(.info-section) > div {
   background: var(--bg-card);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -510,7 +616,7 @@ section > div {
   padding: 30px;
   width: 320px;
   box-shadow: 0 8px 32px var(--shadow-color),
-              0 2px 8px rgba(0, 0, 0, 0.1);
+              0 0 18px var(--accent-glow);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               opacity 0.4s ease,
@@ -525,7 +631,7 @@ section > div {
 }
 
 /* Sleek gradient border effect */
-section > div::before {
+main > section:not(.info-section) > div::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -541,10 +647,10 @@ section > div::before {
 }
 
 /* Professional hover effect for timeline cards - Optimized */
-section > div:hover {
+main > section:not(.info-section) > div:hover {
   transform: translateY(-12px) scale(1.02);
   box-shadow: 0 20px 48px var(--shadow-color),
-              0 8px 16px rgba(0, 0, 0, 0.15);
+              0 0 28px var(--accent-glow);
   opacity: 1 !important;
   filter: none !important;
   z-index: 10;
@@ -552,30 +658,30 @@ section > div:hover {
 
 /* Only trigger background change on hover for better performance */
 @media (hover: hover) {
-  section > div:hover {
+  main > section:not(.info-section) > div:hover {
     background: var(--bg-card-hover);
   }
 }
 
-section > div:hover::before {
+main > section:not(.info-section) > div:hover::before {
   opacity: 1;
 }
 
 /* Active/pressed state for cards */
-section > div:active {
+main > section:not(.info-section) > div:active {
   transform: translateY(-8px) scale(1.01); /* Slight scale down when clicked */
   transition: all 0.1s ease; /* Quick feedback */
 }
 
 /* Focus state for keyboard navigation accessibility */
-section > div:focus-visible {
-  outline: 3px solid #00a8ff;
+main > section:not(.info-section) > div:focus-visible {
+  outline: 4px solid var(--focus-ring);
   outline-offset: 4px;
-  box-shadow: 0 12px 24px rgba(0, 113, 197, 0.6), 0 0 0 4px rgba(0, 168, 255, 0.2);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35), 0 0 0 6px rgba(255, 255, 255, 0.2);
 }
 
 /* Add a subtle gradient overlay on hover */
-section > div::before {
+main > section:not(.info-section) > div::before {
   content: '';
   position: absolute;
   top: 0;
@@ -588,12 +694,12 @@ section > div::before {
   pointer-events: none;
 }
 
-section > div:hover::before {
+main > section:not(.info-section) > div:hover::before {
   opacity: 1;
 }
 
 /* Year heading (h2) styling - Innovative prominent design */
-section > div h2 {
+main > section:not(.info-section) > div h2 {
   color: var(--accent-primary);
   font-size: 3em;
   margin-bottom: 12px;
@@ -611,7 +717,7 @@ section > div h2 {
 }
 
 /* Innovative underline effect for years */
-section > div h2::after {
+main > section:not(.info-section) > div h2::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -624,7 +730,7 @@ section > div h2::after {
   border-radius: 2px;
 }
 
-section > div:hover h2 {
+main > section:not(.info-section) > div:hover h2 {
   color: var(--accent-secondary);
   transform: scale(1.08);
   background: linear-gradient(135deg, rgba(0, 113, 197, 0.2) 0%, rgba(0, 168, 255, 0.15) 100%);
@@ -632,13 +738,13 @@ section > div:hover h2 {
               inset 0 1px 2px rgba(255, 255, 255, 0.1);
 }
 
-section > div:hover h2::after {
+main > section:not(.info-section) > div:hover h2::after {
   width: 100%;
 }
 
 /* Mobile and Tablet: Highlight year when card is in view */
 @media screen and (max-width: 1024px) {
-  section > div.in-view h2 {
+  main > section:not(.info-section) > div.in-view h2 {
     color: var(--accent-secondary);
     transform: scale(1.08);
     background: linear-gradient(135deg, rgba(0, 113, 197, 0.2) 0%, rgba(0, 168, 255, 0.15) 100%);
@@ -646,13 +752,13 @@ section > div:hover h2::after {
                 inset 0 1px 2px rgba(255, 255, 255, 0.1);
   }
   
-  section > div.in-view h2::after {
+  main > section:not(.info-section) > div.in-view h2::after {
     width: 100%;
   }
 }
 
 /* Event title (h3) styling - Professional and sleek */
-section > div h3 {
+main > section:not(.info-section) > div h3 {
   color: var(--text-primary);
   font-size: 1.6em;
   margin-bottom: 18px;
@@ -661,10 +767,12 @@ section > div h3 {
   letter-spacing: -0.5px;
   position: relative;
   padding-left: 12px;
+  text-decoration: none;
+  text-underline-offset: 6px;
 }
 
 /* Innovative accent bar for titles */
-section > div h3::before {
+main > section:not(.info-section) > div h3::before {
   content: '';
   position: absolute;
   left: 0;
@@ -677,29 +785,44 @@ section > div h3::before {
   transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-section > div:hover h3 {
+main > section:not(.info-section) > div:hover h3 {
   transform: translateX(8px);
   color: var(--accent-primary);
+  text-decoration: underline;
 }
 
-section > div:hover h3::before {
+main > section:not(.info-section) > div:hover h3::before {
   height: 100%;
 }
 
 /* Mobile and Tablet: Highlight title when card is in view */
 @media screen and (max-width: 1024px) {
-  section > div.in-view h3 {
+  main > section:not(.info-section) > div.in-view h3 {
     transform: translateX(8px);
     color: var(--accent-primary);
+    text-decoration: underline;
   }
   
-  section > div.in-view h3::before {
+  main > section:not(.info-section) > div.in-view h3::before {
     height: 100%;
   }
 }
 
+/* Reduced motion preference: remove shimmer and pulsing animations */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
 /* Image styling inside timeline cards with professional effects */
-section > div img {
+main > section:not(.info-section) > div img {
   width: 100%;
   height: auto;
   border-radius: 12px;
@@ -711,7 +834,7 @@ section > div img {
   box-shadow: 0 4px 12px transparent;
 }
 
-section > div:hover img {
+main > section:not(.info-section) > div:hover img {
   max-height: 300px;
   opacity: 1;
   margin-bottom: 15px;
@@ -720,7 +843,7 @@ section > div:hover img {
 
 /* Mobile and Tablet: Show images when card is in view */
 @media screen and (max-width: 1024px) {
-  section > div.in-view img {
+  main > section:not(.info-section) > div.in-view img {
     max-height: 300px;
     opacity: 1;
     margin-bottom: 15px;
@@ -729,7 +852,7 @@ section > div:hover img {
 }
 
 /* Description paragraph styling */
-section > div p {
+main > section:not(.info-section) > div p {
   color: var(--text-muted);
   font-size: 1.05em;
   line-height: 1.8;
@@ -741,7 +864,7 @@ section > div p {
   font-weight: 400;
 }
 
-section > div:hover p {
+main > section:not(.info-section) > div:hover p {
   color: var(--text-secondary);
   max-height: 500px;
   opacity: 1;
@@ -750,7 +873,7 @@ section > div:hover p {
 
 /* Mobile and Tablet: Show paragraphs when card is in view */
 @media screen and (max-width: 1024px) {
-  section > div.in-view p {
+  main > section:not(.info-section) > div.in-view p {
     color: var(--text-secondary);
     max-height: 500px;
     opacity: 1;
@@ -758,26 +881,69 @@ section > div:hover p {
   }
 }
 
-/* Footer instruction text styling */
-body > p {
+/* Timeline instruction text styling */
+.timeline-hint {
   text-align: center;
   padding: 40px 20px;
   font-size: 1.1em;
-  color: var(--accent-primary);
+  color: var(--text-secondary);
   font-style: italic;
   font-weight: 500;
   opacity: 0.9;
 }
 
+/* Footer styling with simple layout for beginners */
+footer {
+  background-color: var(--bg-secondary);
+  border-top: 2px solid var(--border-color);
+  margin-top: 40px;
+}
+
+footer div {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  text-align: center;
+}
+
+footer p {
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  font-size: 1em;
+}
+
+footer nav {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+footer a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+footer a:hover {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+}
+
+footer a:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
 /* Mobile and Tablet: Smooth entrance animation for cards */
 @media screen and (max-width: 1024px) {
-  section > div {
+  main > section:not(.info-section) > div {
     opacity: 0.6;
     transform: translateY(30px);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  section > div.in-view {
+  main > section:not(.info-section) > div.in-view {
     opacity: 1;
     transform: translateY(0) scale(1.02);
     box-shadow: 0 16px 40px var(--shadow-color),

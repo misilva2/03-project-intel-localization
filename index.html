@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,8 +12,17 @@
   <!-- Performance Optimization -->
   <meta name="theme-color" content="#0071c5" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Modern, accessible font with broad language coverage -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Favicon so the browser does not request /favicon.ico -->
+  <link rel="icon" href="img/intel-header-logo.svg" type="image/svg+xml" />
   
   <title>Intel: Sustainability Through the Ages | Interactive Timeline</title>
+  <!-- Bootstrap RTL for automatic right-to-left support -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.rtl.min.css" integrity="sha384-CfCrinSRH2IR6a4e6fy2q6ioOX7O6Mtm1L9vRvFZ1trBncWmMePhzvafv7oIcWiW" crossorigin="anonymous" />
+  <!-- Bootstrap Icons for simple, accessible icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="style.css" />
   <script src="theme.js" defer></script>
 </head>
@@ -24,16 +33,11 @@
     🌙
   </button>
 
-  <!-- Scroll to End Button (Desktop only) -->
-  <button id="scroll-arrow" class="scroll-arrow" aria-label="Scroll to end of timeline">
-    →
-  </button>
-
   <!-- Header / Hero Section -->
   <header>
     <div>
       <!-- Ask Copilot to teach you about `.svg`. 🙂 You'll need to resize the logo with CSS. -->
-      <img src="img/intel-header-logo.svg" alt="Intel Logo" width="180" height="auto" loading="eager" />
+      <img src="img/intel-header-logo.svg" alt="Intel logo in white" width="180" height="auto" loading="eager" />
       <!-- Main Heading -->
       <h1>
         Sustainability Through the Ages
@@ -48,15 +52,17 @@
     </div>
   </header>
 
-  <!-- Timeline Cards Section -->
-  <section>
+  <!-- Main content landmark for accessibility -->
+  <main>
+    <!-- Timeline Cards Section -->
+    <section>
 
     <!-- Card 1: 1968 -->
     <div>
       <h2>1968</h2>
       <h3>Intel Founded</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_j759c3j759c3j759.png" alt="Intel founders signing documents" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_j759c3j759c3j759.png" alt="Intel founders Robert Noyce and Gordon Moore signing documents" loading="lazy" width="320" height="auto" />
       <p>
         Robert Noyce and Gordon Moore rename the newly formed company 
         NM Electronics to Intel Corporation, laying the foundation for 
@@ -69,7 +75,7 @@
       <h2>1971</h2>
       <h3>First Microprocessor</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_855zkg855zkg855z.png" alt="Intel 4004 microprocessor demonstration" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_855zkg855zkg855z.png" alt="Intel 4004 microprocessor on display" loading="lazy" width="320" height="auto" />
       <p>
         Intel debuts the 4004, the world's first commercial microprocessor, 
         igniting the microprocessor revolution and propelling the future 
@@ -82,7 +88,7 @@
       <h2>1978</h2>
       <h3>8086 Processor</h3>
       <!-- Add image -->
-      <img src="img/3.jpg" alt="Intel 8086 processor" loading="lazy" width="320" height="auto" />
+      <img src="img/3.jpg" alt="Close-up of the Intel 8086 processor" loading="lazy" width="320" height="auto" />
       <p>
         Launch of the 8086 processor, establishing the x86 architecture 
         that drives countless PCs and servers in the modern era.
@@ -94,7 +100,7 @@
       <h2>1985</h2>
       <h3>386 Processor</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_mxdsyxmxdsyxmxds.png" alt="Intel 386 processor" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_mxdsyxmxdsyxmxds.png" alt="Intel 386 processor chip" loading="lazy" width="320" height="auto" />
       <p>
         Intel introduces the 386 processor with 32-bit architecture, 
         ushering in a new era of performance and multitasking for 
@@ -107,7 +113,7 @@
       <h2>2006</h2>
       <h3>Peak GHG Emissions</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_p7u92zp7u92zp7u9.png" alt="Peak greenhouse gas emissions" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_p7u92zp7u92zp7u9.png" alt="Illustration of peak greenhouse gas emissions" loading="lazy" width="320" height="auto" />
       <p>
         This year marks Intel's highest annual greenhouse gas emissions 
         for operations. Over subsequent years, Intel invests heavily in 
@@ -121,7 +127,7 @@
       <h2>2020</h2>
       <h3>RISE Strategy</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_xiro6mxiro6mxiro.png" alt="Intel RISE strategy" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_xiro6mxiro6mxiro.png" alt="Visual of Intel RISE strategy goals" loading="lazy" width="320" height="auto" />
       <p>
         Intel launches its RISE (Responsible, Inclusive, Sustainable, 
         Enabling) strategy and 2030 goals, aiming to drive industry-wide 
@@ -134,7 +140,7 @@
       <h2>2022</h2>
       <h3>Net-Zero By 2040</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_4zh0k04zh0k04zh0.png" alt="Net-zero emissions commitment" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_4zh0k04zh0k04zh0.png" alt="Graphic representing Intel's net-zero emissions commitment" loading="lazy" width="320" height="auto" />
       <p>
         Intel announces its commitment to achieve net-zero greenhouse 
         gas emissions (Scope 1 and 2) across its global operations 
@@ -147,7 +153,7 @@
       <h2>2023</h2>
       <h3>Renewable Electricity</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_471h3x471h3x471h.png" alt="Renewable electricity achievement" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_471h3x471h3x471h.png" alt="Solar and wind icons for renewable electricity achievement" loading="lazy" width="320" height="auto" />
       <p>
         The company achieves 99% renewable electricity usage worldwide, 
         helping to drastically lower carbon emissions and driving progress 
@@ -160,14 +166,70 @@
       <h2>2024</h2>
       <h3>Sustainability Summit</h3>
       <!-- Add image -->
-      <img src="img/Gemini_Generated_Image_x9arl7x9arl7x9ar.png" alt="Intel Sustainability Summit" loading="lazy" width="320" height="auto" />
+      <img src="img/Gemini_Generated_Image_x9arl7x9arl7x9ar.png" alt="Audience at Intel Sustainability Summit" loading="lazy" width="320" height="auto" />
       <p>
         Intel hosts its first Sustainability Summit, uniting suppliers, 
         government officials, and industry leaders to collaborate on 
         next-generation sustainable semiconductor manufacturing.
       </p>
     </div>
-  </section>
-  <p>Scroll to view timeline | Hover over cards to learn more!</p>
+    </section>
+    <p class="timeline-hint">Scroll to view timeline | Hover over cards to learn more!</p>
+
+    <!-- New three-column section using Bootstrap grid (below timeline) -->
+    <section class="info-section py-5">
+      <div class="container">
+        <div class="row info-row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 g-lg-5">
+          <!-- Column 1 -->
+          <div class="col">
+            <div class="info-card card h-100 text-center">
+              <div class="card-body">
+              <i class="bi bi-leaf" aria-hidden="true"></i>
+              <h2 class="h4">Climate Action</h2>
+              <p>Learn how Intel reduces emissions with cleaner energy and smarter design.</p>
+              <a class="learn-more" href="#">Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="col">
+            <div class="info-card card h-100 text-center">
+              <div class="card-body">
+              <i class="bi bi-droplet" aria-hidden="true"></i>
+              <h2 class="h4">Water Stewardship</h2>
+              <p>See how Intel protects watersheds and improves water efficiency.</p>
+              <a class="learn-more" href="#">Learn More</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 3 -->
+          <div class="col">
+            <div class="info-card card h-100 text-center">
+              <div class="card-body">
+              <i class="bi bi-recycle" aria-hidden="true"></i>
+              <h2 class="h4">Circular Economy</h2>
+              <p>Discover how Intel reduces waste and supports responsible recycling.</p>
+              <a class="learn-more" href="#">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer with basic links and copyright -->
+  <footer>
+    <div>
+      <p>© 2026 Intel Corporation. All rights reserved.</p>
+      <nav aria-label="Footer">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>
