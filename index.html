@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,8 +19,9 @@
   <link rel="icon" href="img/intel-header-logo.svg" type="image/svg+xml" />
   
   <title>Intel: Sustainability Through the Ages | Interactive Timeline</title>
-  <!-- Bootstrap RTL for automatic right-to-left support -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.rtl.min.css" integrity="sha384-CfCrinSRH2IR6a4e6fy2q6ioOX7O6Mtm1L9vRvFZ1trBncWmMePhzvafv7oIcWiW" crossorigin="anonymous" />
+  <!-- Bootstrap LTR + RTL (JS will enable the correct one) -->
+  <link id="bootstrap-ltr" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" crossorigin="anonymous" disabled />
+  <link id="bootstrap-rtl" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.rtl.min.css" integrity="sha384-CfCrinSRH2IR6a4e6fy2q6ioOX7O6Mtm1L9vRvFZ1trBncWmMePhzvafv7oIcWiW" crossorigin="anonymous" />
   <!-- Bootstrap Icons for simple, accessible icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="style.css" />
@@ -54,8 +55,65 @@
 
   <!-- Main content landmark for accessibility -->
   <main>
+    <!-- Timeline image carousel (Bootstrap) -->
+    <section class="container py-4">
+      <div id="timelineCarousel" class="carousel slide" data-bs-ride="carousel" aria-label="Timeline image carousel">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#timelineCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#timelineCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#timelineCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#timelineCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#timelineCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+          <button type="button" data-bs-target="#timelineCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+          <button type="button" data-bs-target="#timelineCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+          <button type="button" data-bs-target="#timelineCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
+          <button type="button" data-bs-target="#timelineCarousel" data-bs-slide-to="8" aria-label="Slide 9"></button>
+        </div>
+
+        <!-- Slides -->
+        <div class="carousel-inner rounded-4">
+          <div class="carousel-item active">
+            <img src="img/Gemini_Generated_Image_j759c3j759c3j759.png" class="d-block w-100" alt="Intel founders Robert Noyce and Gordon Moore signing documents" />
+          </div>
+          <div class="carousel-item">
+            <img src="img/Gemini_Generated_Image_855zkg855zkg855z.png" class="d-block w-100" alt="Intel 4004 microprocessor on display" />
+          </div>
+          <div class="carousel-item">
+            <img src="img/3.jpg" class="d-block w-100" alt="Close-up of the Intel 8086 processor" />
+          </div>
+          <div class="carousel-item">
+            <img src="img/Gemini_Generated_Image_mxdsyxmxdsyxmxds.png" class="d-block w-100" alt="Intel 386 processor chip" />
+          </div>
+          <div class="carousel-item">
+            <img src="img/Gemini_Generated_Image_p7u92zp7u92zp7u9.png" class="d-block w-100" alt="Illustration of peak greenhouse gas emissions" />
+          </div>
+          <div class="carousel-item">
+            <img src="img/Gemini_Generated_Image_xiro6mxiro6mxiro.png" class="d-block w-100" alt="Visual of Intel RISE strategy goals" />
+          </div>
+          <div class="carousel-item">
+            <img src="img/Gemini_Generated_Image_4zh0k04zh0k04zh0.png" class="d-block w-100" alt="Graphic representing Intel's net-zero emissions commitment" />
+          </div>
+          <div class="carousel-item">
+            <img src="img/Gemini_Generated_Image_471h3x471h3x471h.png" class="d-block w-100" alt="Solar and wind icons for renewable electricity achievement" />
+          </div>
+          <div class="carousel-item">
+            <img src="img/Gemini_Generated_Image_x9arl7x9arl7x9ar.png" class="d-block w-100" alt="Audience at Intel Sustainability Summit" />
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#timelineCarousel" data-bs-slide="prev" aria-label="Previous slide">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#timelineCarousel" data-bs-slide="next" aria-label="Next slide">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </section>
+
     <!-- Timeline Cards Section -->
-    <section>
+    <section class="timeline-section">
 
     <!-- Card 1: 1968 -->
     <div>
@@ -184,7 +242,11 @@
           <div class="col">
             <div class="info-card card h-100 text-center">
               <div class="card-body">
-              <i class="bi bi-leaf" aria-hidden="true"></i>
+              <!-- Inline SVG so the icon always renders -->
+              <svg class="info-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                <path d="M7.5 1.2c3.1 0 6.3 2.2 6.3 6.4 0 4.2-3.2 7.2-7.6 7.2C3.2 14.8 1 12.4 1 9.2c0-4.1 3.2-8 6.5-8zm.1 1.4c-2.3 0-4.7 3.1-4.7 6.6 0 2.4 1.6 4.1 3.9 4.1 3.2 0 6-2.4 6-5.7 0-3.3-2.4-5-5.2-5z" />
+                <path d="M4.3 12.4c1.8-3.1 4.1-5.2 7.1-6.3-.8 2.8-2.8 5-5.9 6.6-.4.2-.8.3-1.2.4z" />
+              </svg>
               <h2 class="h4">Climate Action</h2>
               <p>Learn how Intel reduces emissions with cleaner energy and smarter design.</p>
               <a class="learn-more" href="#">Learn More</a>
@@ -218,6 +280,33 @@
         </div>
       </div>
     </section>
+
+    <!-- Newsletter form section (Bootstrap) -->
+    <section class="newsletter-section py-5">
+      <div class="container">
+        <div class="newsletter-card">
+          <h2 class="h3">Sustainability Newsletter</h2>
+          <p>Subscribe for monthly updates on Intel's sustainability progress.</p>
+
+          <form aria-label="Newsletter subscription form">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" />
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Footer with basic links and copyright -->
@@ -231,5 +320,8 @@
       </nav>
     </div>
   </footer>
+
+  <!-- Bootstrap JS for interactive components like the carousel -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

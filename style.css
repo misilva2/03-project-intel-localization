@@ -111,6 +111,8 @@ body.light-theme {
   transform: scale(0.95);
 }
 
+/* Language switcher for easy RTL/LTR testing */
+
 /* Strong keyboard focus for floating buttons */
 .theme-toggle:focus-visible,
 .scroll-arrow:focus-visible {
@@ -128,6 +130,7 @@ body.light-theme {
     right: 15px;
     font-size: 1.3em;
   }
+
 }
 
 /* Scroll Arrow Button - Desktop only */
@@ -276,6 +279,16 @@ header p {
   display: inline-block;
 }
 
+.info-card .info-icon {
+  width: 36px;
+  height: 36px;
+  fill: var(--accent-primary);
+  margin-bottom: 12px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .info-card h2 {
   font-size: 1.7em;
   color: var(--text-primary);
@@ -339,7 +352,7 @@ header p {
 }
 
 /* Timeline Cards Section styling */
-main > section:not(.info-section) {
+.timeline-section {
   max-width: 1400px;
   margin: 50px auto;
   padding: 20px;
@@ -353,7 +366,7 @@ main > section:not(.info-section) {
 
 /* Dim all cards when one is hovered - spotlight effect */
 @media (hover: hover) {
-  main > section:not(.info-section):has(> div:hover) > div:not(:hover) {
+  .timeline-section:has(> div:hover) > div:not(:hover) {
     opacity: 0.3;
     filter: blur(2px) brightness(0.5);
     transform: scale(0.95);
@@ -366,7 +379,7 @@ main > section:not(.info-section) {
     padding: 40px 20px; /* Reduced padding for more content visibility */
   }
   
-  main > section:not(.info-section) {
+  .timeline-section {
     flex-direction: column; /* Stack cards vertically */
     align-items: center; /* Center cards */
     gap: 40px; /* Increased vertical spacing for better dot separation */
@@ -376,7 +389,7 @@ main > section:not(.info-section) {
   }
   
   /* Add vertical timeline line for mobile */
-  main > section:not(.info-section)::before {
+  .timeline-section::before {
     content: '';
     position: absolute;
     left: 30px;
@@ -388,7 +401,7 @@ main > section:not(.info-section) {
   }
   
   /* Make cards full width on mobile with improved sizing */
-  main > section:not(.info-section) > div {
+  .timeline-section > div {
     width: 90%; /* Slightly narrower for better margins */
     max-width: 380px;
     min-height: 44px; /* Ensure touch target size */
@@ -398,7 +411,7 @@ main > section:not(.info-section) {
   }
   
   /* Add timeline dots for each card on mobile */
-  main > section:not(.info-section) > div::after {
+  .timeline-section > div::after {
     content: '';
     position: absolute;
     left: -50px; /* Position on the left timeline with more space */
@@ -413,7 +426,7 @@ main > section:not(.info-section) {
     transition: all 0.3s ease;
   }
   
-  main > section:not(.info-section) > div:hover::after {
+  .timeline-section > div:hover::after {
     background-color: var(--accent-secondary);
     box-shadow: 0 0 16px rgba(0, 168, 255, 0.6);
     transform: scale(1.2);
@@ -435,7 +448,7 @@ main > section:not(.info-section) {
 
 /* Media query for tablets (601px to 1024px) */
 @media screen and (min-width: 601px) and (max-width: 1024px) {
-  main > section:not(.info-section) {
+  .timeline-section {
     flex-direction: column; /* Stack vertically for better timeline appearance */
     align-items: center;
     gap: 30px;
@@ -445,7 +458,7 @@ main > section:not(.info-section) {
   }
   
   /* Add vertical timeline line for tablets */
-  main > section:not(.info-section)::before {
+  .timeline-section::before {
     content: '';
     position: absolute;
     left: 50%;
@@ -458,7 +471,7 @@ main > section:not(.info-section) {
   }
   
   /* Cards for tablets */
-  main > section:not(.info-section) > div {
+  .timeline-section > div {
     width: 85%;
     max-width: 500px;
     position: relative;
@@ -466,7 +479,7 @@ main > section:not(.info-section) {
   }
   
   /* Add timeline dots for each card on tablets */
-  main > section:not(.info-section) > div::after {
+  .timeline-section > div::after {
     content: '';
     position: absolute;
     left: 50%;
@@ -494,7 +507,7 @@ main > section:not(.info-section) {
   }
   
   /* Enhanced dot on hover */
-  main > section:not(.info-section) > div:hover::after {
+  .timeline-section > div:hover::after {
     width: 24px;
     height: 24px;
     background-color: var(--accent-secondary);
@@ -514,7 +527,7 @@ main > section:not(.info-section) {
 
 /* Media query for larger screens (1025px and up) - Horizontal Sliding Timeline */
 @media screen and (min-width: 1025px) {
-  section {
+  .timeline-section {
     max-width: 100%;
     overflow-x: auto; /* Enable horizontal scrolling */
     overflow-y: hidden;
@@ -524,10 +537,11 @@ main > section:not(.info-section) {
     padding: 60px 40px;
     scroll-behavior: smooth; /* Smooth scrolling */
     scroll-snap-type: x mandatory; /* Snap to cards when scrolling */
+    position: relative; /* Keep the timeline line inside the section */
   }
   
   /* Add a timeline line connecting the cards */
-  section::before {
+  .timeline-section::before {
     content: '';
     position: absolute;
     top: 80px;
@@ -539,7 +553,7 @@ main > section:not(.info-section) {
   }
   
   /* Card styling for horizontal timeline */
-  section > div {
+  .timeline-section > div {
     flex: 0 0 350px; /* Fixed width, no grow/shrink */
     width: 350px;
     scroll-snap-align: center; /* Snap to center when scrolling */
@@ -548,7 +562,7 @@ main > section:not(.info-section) {
   }
   
   /* Add timeline dots for each card */
-  section > div::after {
+  .timeline-section > div::after {
     content: '';
     position: absolute;
     top: -35px;
@@ -577,7 +591,7 @@ main > section:not(.info-section) {
   }
   
   /* Enhance timeline dot on hover */
-  section > div:hover::after {
+  .timeline-section > div:hover::after {
     width: 28px;
     height: 28px;
     background-color: var(--accent-secondary);
@@ -586,28 +600,28 @@ main > section:not(.info-section) {
   }
   
   /* Custom scrollbar styling for the timeline */
-  main > section:not(.info-section)::-webkit-scrollbar {
+  .timeline-section::-webkit-scrollbar {
     height: 10px;
   }
   
-  main > section:not(.info-section)::-webkit-scrollbar-track {
+  .timeline-section::-webkit-scrollbar-track {
     background: #1a1a1a;
     border-radius: 10px;
   }
   
-  main > section:not(.info-section)::-webkit-scrollbar-thumb {
+  .timeline-section::-webkit-scrollbar-thumb {
     background: #0071c5;
     border-radius: 10px;
     transition: background 0.3s ease;
   }
   
-  main > section:not(.info-section)::-webkit-scrollbar-thumb:hover {
+  .timeline-section::-webkit-scrollbar-thumb:hover {
     background: #00a8ff;
   }
 }
 
 /* Individual timeline card styling with glass morphism - Optimized */
-main > section:not(.info-section) > div {
+.timeline-section > div {
   background: var(--bg-card);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -631,7 +645,7 @@ main > section:not(.info-section) > div {
 }
 
 /* Sleek gradient border effect */
-main > section:not(.info-section) > div::before {
+.timeline-section > div::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -647,7 +661,7 @@ main > section:not(.info-section) > div::before {
 }
 
 /* Professional hover effect for timeline cards - Optimized */
-main > section:not(.info-section) > div:hover {
+.timeline-section > div:hover {
   transform: translateY(-12px) scale(1.02);
   box-shadow: 0 20px 48px var(--shadow-color),
               0 0 28px var(--accent-glow);
@@ -658,30 +672,30 @@ main > section:not(.info-section) > div:hover {
 
 /* Only trigger background change on hover for better performance */
 @media (hover: hover) {
-  main > section:not(.info-section) > div:hover {
+  .timeline-section > div:hover {
     background: var(--bg-card-hover);
   }
 }
 
-main > section:not(.info-section) > div:hover::before {
+.timeline-section > div:hover::before {
   opacity: 1;
 }
 
 /* Active/pressed state for cards */
-main > section:not(.info-section) > div:active {
+.timeline-section > div:active {
   transform: translateY(-8px) scale(1.01); /* Slight scale down when clicked */
   transition: all 0.1s ease; /* Quick feedback */
 }
 
 /* Focus state for keyboard navigation accessibility */
-main > section:not(.info-section) > div:focus-visible {
+.timeline-section > div:focus-visible {
   outline: 4px solid var(--focus-ring);
   outline-offset: 4px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35), 0 0 0 6px rgba(255, 255, 255, 0.2);
 }
 
 /* Add a subtle gradient overlay on hover */
-main > section:not(.info-section) > div::before {
+.timeline-section > div::before {
   content: '';
   position: absolute;
   top: 0;
@@ -694,12 +708,12 @@ main > section:not(.info-section) > div::before {
   pointer-events: none;
 }
 
-main > section:not(.info-section) > div:hover::before {
+.timeline-section > div:hover::before {
   opacity: 1;
 }
 
 /* Year heading (h2) styling - Innovative prominent design */
-main > section:not(.info-section) > div h2 {
+.timeline-section > div h2 {
   color: var(--accent-primary);
   font-size: 3em;
   margin-bottom: 12px;
@@ -717,7 +731,7 @@ main > section:not(.info-section) > div h2 {
 }
 
 /* Innovative underline effect for years */
-main > section:not(.info-section) > div h2::after {
+.timeline-section > div h2::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -730,7 +744,7 @@ main > section:not(.info-section) > div h2::after {
   border-radius: 2px;
 }
 
-main > section:not(.info-section) > div:hover h2 {
+.timeline-section > div:hover h2 {
   color: var(--accent-secondary);
   transform: scale(1.08);
   background: linear-gradient(135deg, rgba(0, 113, 197, 0.2) 0%, rgba(0, 168, 255, 0.15) 100%);
@@ -738,13 +752,13 @@ main > section:not(.info-section) > div:hover h2 {
               inset 0 1px 2px rgba(255, 255, 255, 0.1);
 }
 
-main > section:not(.info-section) > div:hover h2::after {
+.timeline-section > div:hover h2::after {
   width: 100%;
 }
 
 /* Mobile and Tablet: Highlight year when card is in view */
 @media screen and (max-width: 1024px) {
-  main > section:not(.info-section) > div.in-view h2 {
+  .timeline-section > div.in-view h2 {
     color: var(--accent-secondary);
     transform: scale(1.08);
     background: linear-gradient(135deg, rgba(0, 113, 197, 0.2) 0%, rgba(0, 168, 255, 0.15) 100%);
@@ -752,13 +766,13 @@ main > section:not(.info-section) > div:hover h2::after {
                 inset 0 1px 2px rgba(255, 255, 255, 0.1);
   }
   
-  main > section:not(.info-section) > div.in-view h2::after {
+  .timeline-section > div.in-view h2::after {
     width: 100%;
   }
 }
 
 /* Event title (h3) styling - Professional and sleek */
-main > section:not(.info-section) > div h3 {
+.timeline-section > div h3 {
   color: var(--text-primary);
   font-size: 1.6em;
   margin-bottom: 18px;
@@ -772,7 +786,7 @@ main > section:not(.info-section) > div h3 {
 }
 
 /* Innovative accent bar for titles */
-main > section:not(.info-section) > div h3::before {
+.timeline-section > div h3::before {
   content: '';
   position: absolute;
   left: 0;
@@ -785,25 +799,25 @@ main > section:not(.info-section) > div h3::before {
   transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-main > section:not(.info-section) > div:hover h3 {
+.timeline-section > div:hover h3 {
   transform: translateX(8px);
   color: var(--accent-primary);
   text-decoration: underline;
 }
 
-main > section:not(.info-section) > div:hover h3::before {
+.timeline-section > div:hover h3::before {
   height: 100%;
 }
 
 /* Mobile and Tablet: Highlight title when card is in view */
 @media screen and (max-width: 1024px) {
-  main > section:not(.info-section) > div.in-view h3 {
+  .timeline-section > div.in-view h3 {
     transform: translateX(8px);
     color: var(--accent-primary);
     text-decoration: underline;
   }
   
-  main > section:not(.info-section) > div.in-view h3::before {
+  .timeline-section > div.in-view h3::before {
     height: 100%;
   }
 }
@@ -822,7 +836,7 @@ main > section:not(.info-section) > div:hover h3::before {
 }
 
 /* Image styling inside timeline cards with professional effects */
-main > section:not(.info-section) > div img {
+.timeline-section > div img {
   width: 100%;
   height: auto;
   border-radius: 12px;
@@ -834,7 +848,7 @@ main > section:not(.info-section) > div img {
   box-shadow: 0 4px 12px transparent;
 }
 
-main > section:not(.info-section) > div:hover img {
+.timeline-section > div:hover img {
   max-height: 300px;
   opacity: 1;
   margin-bottom: 15px;
@@ -843,7 +857,7 @@ main > section:not(.info-section) > div:hover img {
 
 /* Mobile and Tablet: Show images when card is in view */
 @media screen and (max-width: 1024px) {
-  main > section:not(.info-section) > div.in-view img {
+  .timeline-section > div.in-view img {
     max-height: 300px;
     opacity: 1;
     margin-bottom: 15px;
@@ -852,7 +866,7 @@ main > section:not(.info-section) > div:hover img {
 }
 
 /* Description paragraph styling */
-main > section:not(.info-section) > div p {
+.timeline-section > div p {
   color: var(--text-muted);
   font-size: 1.05em;
   line-height: 1.8;
@@ -864,7 +878,7 @@ main > section:not(.info-section) > div p {
   font-weight: 400;
 }
 
-main > section:not(.info-section) > div:hover p {
+.timeline-section > div:hover p {
   color: var(--text-secondary);
   max-height: 500px;
   opacity: 1;
@@ -873,7 +887,7 @@ main > section:not(.info-section) > div:hover p {
 
 /* Mobile and Tablet: Show paragraphs when card is in view */
 @media screen and (max-width: 1024px) {
-  main > section:not(.info-section) > div.in-view p {
+  .timeline-section > div.in-view p {
     color: var(--text-secondary);
     max-height: 500px;
     opacity: 1;
@@ -892,6 +906,107 @@ main > section:not(.info-section) > div:hover p {
   opacity: 0.9;
 }
 
+/* Newsletter section styling (Bootstrap form) */
+.newsletter-section {
+  padding: 48px 16px 70px 16px;
+}
+
+.newsletter-card {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 36px;
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: 0 10px 28px var(--shadow-color);
+  text-align: center;
+}
+
+.newsletter-card h2 {
+  margin-top: 0;
+  line-height: 1.3;
+  font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.2rem);
+}
+
+.newsletter-card form {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.newsletter-card p {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  font-size: 1.05em;
+}
+
+/* Make Bootstrap inputs match the theme */
+.newsletter-card .form-control {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  font-size: 1.05em;
+  padding: 12px 14px;
+}
+
+.newsletter-card .form-control::placeholder {
+  color: var(--text-muted);
+}
+
+.newsletter-card .form-control:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(0, 113, 197, 0.25);
+}
+
+.newsletter-card .btn-primary {
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  font-weight: 700;
+  padding: 10px 18px;
+  font-size: 1.05em;
+}
+
+.newsletter-card .btn-primary:hover {
+  background-color: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+}
+
+/* Make the form area wider on large screens */
+.newsletter-section .container {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .newsletter-card {
+    padding: 24px;
+  }
+
+  .newsletter-card form {
+    max-width: 100%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .newsletter-section .container {
+    max-width: 1400px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .newsletter-section .container {
+    max-width: 1600px;
+  }
+
+  .newsletter-card {
+    max-width: 1500px;
+  }
+}
+
+html[dir="rtl"] .newsletter-card form {
+  text-align: right;
+}
+
 /* Footer styling with simple layout for beginners */
 footer {
   background-color: var(--bg-secondary);
@@ -900,7 +1015,7 @@ footer {
 }
 
 footer div {
-  max-width: 1000px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 24px 20px;
   text-align: center;
@@ -937,16 +1052,99 @@ footer a:focus-visible {
 
 /* Mobile and Tablet: Smooth entrance animation for cards */
 @media screen and (max-width: 1024px) {
-  main > section:not(.info-section) > div {
+  .timeline-section > div {
     opacity: 0.6;
     transform: translateY(30px);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  main > section:not(.info-section) > div.in-view {
+  .timeline-section > div.in-view {
     opacity: 1;
     transform: translateY(0) scale(1.02);
     box-shadow: 0 16px 40px var(--shadow-color),
                 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* RTL support: align text and mirror LTR-only positioning */
+html[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] header,
+html[dir="rtl"] main,
+html[dir="rtl"] .timeline-hint,
+html[dir="rtl"] footer {
+  text-align: right;
+}
+
+html[dir="rtl"] .timeline-section {
+  direction: rtl;
+}
+
+html[dir="rtl"] .info-card,
+html[dir="rtl"] .timeline-section > div {
+  text-align: right;
+}
+
+/* Move floating buttons away from the reading edge */
+html[dir="rtl"] .theme-toggle,
+html[dir="rtl"] .scroll-arrow {
+  right: auto;
+  left: 20px;
+}
+
+
+@media screen and (max-width: 600px) {
+  html[dir="rtl"] .theme-toggle {
+    left: 15px;
+  }
+
+}
+
+/* Flip timeline line and dots on small screens */
+@media screen and (max-width: 600px) {
+  html[dir="rtl"] .timeline-section {
+    padding: 20px 60px 20px 20px;
+  }
+
+  html[dir="rtl"] .timeline-section::before {
+    left: auto;
+    right: 30px;
+  }
+
+  html[dir="rtl"] .timeline-section > div::after {
+    left: auto;
+    right: -50px;
+  }
+}
+
+/* Flip the accent bar on titles */
+html[dir="rtl"] .timeline-section > div h3 {
+  padding-left: 0;
+  padding-right: 12px;
+}
+
+html[dir="rtl"] .timeline-section > div h3::before {
+  left: auto;
+  right: 0;
+}
+
+html[dir="rtl"] .timeline-section > div:hover h3 {
+  transform: translateX(-8px);
+}
+
+@media screen and (max-width: 1024px) {
+  html[dir="rtl"] .timeline-section > div.in-view h3 {
+    transform: translateX(-8px);
+  }
+}
+
+/* Wide screens: start the timeline from the right */
+@media screen and (min-width: 1025px) {
+  html[dir="rtl"] .timeline-section {
+    flex-direction: row-reverse;
+    direction: rtl;
   }
 }

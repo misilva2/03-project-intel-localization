@@ -16,10 +16,68 @@ function applyLanguageDirection() {
   const systemLanguage = (navigator.language || 'en').toLowerCase();
   const languageCode = systemLanguage.split('-')[0];
   const isRtl = rtlLanguages.includes(languageCode);
+  const finalDir = isRtl ? 'rtl' : 'ltr';
 
   // Set direction on the root element so all content follows it
-  document.documentElement.setAttribute('dir', isRtl ? 'rtl' : 'ltr');
-  document.documentElement.setAttribute('lang', languageCode);
+  document.documentElement.setAttribute('dir', finalDir);
+  document.documentElement.setAttribute('lang', languageCode || 'en');
+
+  // Enable the matching Bootstrap stylesheet
+  const bootstrapLtr = document.getElementById('bootstrap-ltr');
+  const bootstrapRtl = document.getElementById('bootstrap-rtl');
+  if (bootstrapLtr && bootstrapRtl) {
+    bootstrapLtr.disabled = finalDir === 'rtl';
+    bootstrapRtl.disabled = finalDir !== 'rtl';
+  }
+}
+
+// Ensure the timeline starts on the right in RTL on desktop
+function getRtlScrollType() {
+  const probe = document.createElement('div');
+  const inner = document.createElement('div');
+
+  probe.dir = 'rtl';
+  probe.style.width = '100px';
+  probe.style.height = '100px';
+  probe.style.overflow = 'scroll';
+  probe.style.position = 'absolute';
+  probe.style.top = '-9999px';
+
+  inner.style.width = '200px';
+  inner.style.height = '100px';
+
+  probe.appendChild(inner);
+  document.body.appendChild(probe);
+
+  probe.scrollLeft = 1;
+  const isNegative = probe.scrollLeft < 0;
+  const isReverse = !isNegative && probe.scrollLeft === 0;
+
+  document.body.removeChild(probe);
+
+  return isNegative ? 'negative' : (isReverse ? 'reverse' : 'default');
+}
+
+function syncTimelineScrollForRtl() {
+  const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
+  const section = document.querySelector('.timeline-section');
+
+  if (!section || window.innerWidth < 1025 || !isRtl) {
+    return;
+  }
+
+  const maxScroll = section.scrollWidth - section.clientWidth;
+  const rtlType = getRtlScrollType();
+
+  requestAnimationFrame(() => {
+    if (rtlType === 'negative') {
+      section.scrollLeft = -maxScroll;
+    } else if (rtlType === 'reverse') {
+      section.scrollLeft = maxScroll;
+    } else {
+      section.scrollLeft = 0;
+    }
+  });
 }
 
 // Apply theme to the document - optimized to minimize reflows
@@ -54,6 +112,7 @@ function toggleTheme() {
 // Initialize theme on page load
 document.addEventListener('DOMContentLoaded', () => {
   applyLanguageDirection();
+  syncTimelineScrollForRtl();
   const theme = getThemePreference();
   applyTheme(theme);
   
@@ -62,15 +121,17 @@ document.addEventListener('DOMContentLoaded', () => {
   if (toggleBtn) {
     toggleBtn.addEventListener('click', toggleTheme);
   }
+
   
   // Add scroll to end functionality for desktop arrow button
   const scrollArrow = document.getElementById('scroll-arrow');
   if (scrollArrow) {
     scrollArrow.addEventListener('click', () => {
-      const section = document.querySelector('section');
+      const section = document.querySelector('.timeline-section');
+      const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
       if (section && window.innerWidth >= 1025) {
         section.scrollTo({
-          left: section.scrollWidth,
+          left: isRtl ? 0 : section.scrollWidth,
           behavior: 'smooth'
         });
       }
@@ -81,11 +142,16 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
 });
 
+window.addEventListener('load', syncTimelineScrollForRtl);
+window.addEventListener('resize', () => {
+  syncTimelineScrollForRtl();
+});
+
 // Scroll reveal functionality for mobile and tablet views
 function initScrollReveal() {
   // Only apply on mobile and tablet (not desktop)
   if (window.innerWidth < 1025) {
-    const cards = document.querySelectorAll('section > div');
+    const cards = document.querySelectorAll('.timeline-section > div');
     
     // Intersection Observer options
     const observerOptions = {
